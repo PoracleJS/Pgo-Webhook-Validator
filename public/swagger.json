@@ -1,0 +1,97 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "PGO-webhook-validator",
+    "description": "Validation library for PGO webhooks",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/": {
+      "post": {
+        "summary": "Endpoint for processing pokemon webhooks",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/pokemonMessage"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Pokemon received",
+          },
+          "400": {
+            "description": "Data error"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "pokemonMessage": {
+        "description": "Request payload for a pokémon alert",
+        "required": ["type", "message"],
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Type of webhook",
+            "example": "pokemon"
+          },
+          "message": {
+            "type": "object",
+            "required": ["encounter_id"],
+            "properties": {
+              "encounter_id": {
+                "type": "string",
+                "example": "b67d155a-21d3-4267-a7f8-f488c5e34bf8"
+              }
+            },
+            "example": {
+              "type": "pokemon",
+              "message": {
+                "encounter_id": 234080,
+                "spawnpoint_id": "adkjghadf",
+                "pokemon_id": 25,
+                "pokemon_level": 30,
+                "player_level": 31,
+                "latitude": 59.4388027,
+                "longitude": 24.749224,
+                "disappear_time": 1549996712,
+                "last_modified_time": 1475033386661,
+                "time_until_hidden_ms": 5000,
+                "seconds_until_despawn": 1754,
+                "spawn_start": 2153,
+                "spawn_end": 3264,
+                "verified": true,
+                "cp_multiplier": 0.7317000031471252,
+                "form": 0,
+                "cp": 768,
+                "individual_attack": 2,
+                "individual_defense": 4,
+                "individual_stamina": 12,
+                "move_1": 14,
+                "move_2": 14,
+                "height": 23,
+                "weight": 34,
+                "gender": 2
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

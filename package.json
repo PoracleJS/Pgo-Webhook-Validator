@@ -1,0 +1,31 @@
+{
+  "name": "pgo-webhook-validator",
+  "version": "1.0.0",
+  "description": "pgo webhook validation library",
+  "main": "index.js",
+  "scripts": {
+    "start": "node .",
+    "test": "npm run lint",
+    "redoc": "redoc-cli bundle -o public/index.html public/swagger.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PoracleJS/Pgo-webhook-validator.git"
+  },
+  "keywords": [
+    "Pokémon",
+    "webhook",
+    "validator",
+    "OpenAPI-3.0"
+  ],
+  "author": "KartulUdus",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/PoracleJS/Pgo-webhook-validator/issues"
+  },
+  "homepage": "https://github.com/PoracleJS/Pgo-webhook-validator#readme",
+  "dependencies": {
+    "redoc-cli": "^0.7.0",
+    "swagger-model-validator": "^3.0.7"
+  }
+}
