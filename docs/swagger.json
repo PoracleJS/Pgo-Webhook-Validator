@@ -27,7 +27,7 @@
         },
         "responses": {
           "200": {
-            "description": "Pokemon received",
+            "description": "Pokemon received"
           },
           "400": {
             "description": "Data error"
