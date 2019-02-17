@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node .",
     "test": "npm run lint",
-    "redoc": "redoc-cli bundle -o docs/index.html docs/swagger.json"
+    "redoc": "redoc-cli bundle -o docs/index.html docs/swagger.json --options.theme.colors.primary.main=orange",
+    "redo": "redoc-cli --help"
   },
   "repository": {
     "type": "git",

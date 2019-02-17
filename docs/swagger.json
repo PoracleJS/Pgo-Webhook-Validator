@@ -16,15 +16,32 @@
                 "type": "array",
                 "items": {
                   "oneOf": [
-                    {
-                      "$ref": "#/components/schemas/pokemonMessage"
-                    }
+                    {"$ref": "#/components/schemas/pokemonMessage"},
+                    {"$ref": "#/components/schemas/pokestopMessage"}
                   ]
+                },
+                "examples": {
+                  "pokemon": {
+                    "value": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/pokemonMessage"
+                      }
+                    }
+                  },
+                  "pokestop":  {
+                    "value": {
+                      "type": "array",
+                      "items": {
+                          "$ref": "#/components/schemas/pokestopMessage"
+                      }
+                    }
+                  }
                 }
               }
             }
           }
-        },
+        },,
         "responses": {
           "200": {
             "description": "Pokemon received"
@@ -42,6 +59,7 @@
   "components": {
     "schemas": {
       "pokemonMessage": {
+        "type": "object",
         "description": "Request payload for a pokémon alert",
         "required": ["type", "message"],
         "properties": {
@@ -52,41 +70,154 @@
           },
           "message": {
             "type": "object",
-            "required": ["encounter_id"],
+            "required": ["encounter_id", "pokemon_id", "latitude", "longitude", "disappear_time"],
             "properties": {
               "encounter_id": {
                 "type": "string",
                 "example": "b67d155a-21d3-4267-a7f8-f488c5e34bf8"
+              },
+              "pokemon_id": {
+                "type": "integer",
+                "example": 25
+              },
+              "latitude": {
+                "type": "number",
+                "example": 59.4372155
+              },
+              "longitude": {
+                "type": "number",
+                "example": 24.7453688
+              },
+              "disappear_time": {
+                "type": "integer",
+                "example": 1550414206
+
+              },
+              "player_level": {
+                "type": "integer",
+                "example": 30
+              },
+              "last_modified_time": {
+                "type": "integer",
+                "example": 1550414006
+              },
+              "time_until_hidden_ms": {
+                "type": "integer",
+                "example": 300000
+              },
+              "seconds_until_despawn": {
+                "type": "integer",
+                "example": 300
+              },
+              "spawn_start": {
+                "type": "integer",
+                "example": 2153
+              },
+              "spawn_end": {
+                "type": "integer",
+                "example": 3264
+              },
+              "disappear_time_verified": {
+                "type": "boolean",
+                "example": true
+              },
+              "cp_multiplier": {
+                "type": "number",
+                "example": 0.472336085311278
+              },
+              "form": {
+                "type": "integer",
+                "example": 0
+              },
+              "cp": {
+                "type": "integer",
+                "example": 321
+              },
+              "individual_attack": {
+                "type": "integer",
+                "example": 15
+              },
+              "individual_defense": {
+                "type": "integer",
+                "example": 15
+              },
+              "individual_stamina": {
+                "type": "integer",
+                "example": 15
+              },
+              "move_1": {
+                "type": "integer",
+                "example": 79
+              },
+              "move_2": {
+                "type": "integer",
+                "example": 35
+              },
+              "height": {
+                "type": "number",
+                "example": 1.2694651007652283
+              },
+              "weight": {
+                "type": "number",
+                "example": 25.56946510
+              },
+              "gender": {
+                "type": "integer",
+                "example": 1
               }
-            },
-            "example": {
-              "type": "pokemon",
-              "message": {
-                "encounter_id": 234080,
-                "spawnpoint_id": "adkjghadf",
-                "pokemon_id": 25,
-                "pokemon_level": 30,
-                "player_level": 31,
-                "latitude": 59.4388027,
-                "longitude": 24.749224,
-                "disappear_time": 1549996712,
-                "last_modified_time": 1475033386661,
-                "time_until_hidden_ms": 5000,
-                "seconds_until_despawn": 1754,
-                "spawn_start": 2153,
-                "spawn_end": 3264,
-                "verified": true,
-                "cp_multiplier": 0.7317000031471252,
-                "form": 0,
-                "cp": 768,
-                "individual_attack": 2,
-                "individual_defense": 4,
-                "individual_stamina": 12,
-                "move_1": 14,
-                "move_2": 14,
-                "height": 23,
-                "weight": 34,
-                "gender": 2
+            }
+          }
+        }
+      },
+      "pokestopMessage": {
+        "type": "object",
+        "description": "Request payload for a pokestop",
+        "required": ["type", "message"],
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Type of webhook",
+            "example": "pokestop"
+          },
+          "message": {
+            "type": "object",
+            "required": ["pokestop_id", "latitude", "longitude"],
+            "properties": {
+              "pokestop_id": {
+                "type": "string",
+                "example": "0061946a084f44fabeb686012e35a4d9.16"
+              },
+              "latitude": {
+                "type": "number",
+                "example": 59.4372155
+              },
+              "longitude": {
+                "type": "number",
+                "example": 24.7453688
+              },
+              "name": {
+                "type": "string",
+                "example": "Black Egg Fountain"
+              },
+              "url": {
+                "type": "string",
+                "example": "https://lh6.ggpht.com/a9OfzTN8mHA-J0LIli-JXii_d-SzNIvea-KNRF2wYLytHCgbeAR8gdTLg-f0cUNfxTHZc4gj69UkK-2nuN0"
+              },
+              "lure_expiration": {
+                "type": "integer",
+                "example": 1550414006
+              },
+              "last_modified": {
+                "type": "integer",
+                "example": 1550413706
+              },
+              "enabled": {
+                "type": "boolean",
+                "example": true
+              },
+              "updated": {
+                "type": "integer",
+                "example": 1550413706
               }
             }
           }

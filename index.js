@@ -7,7 +7,9 @@ const swaggerModels = JSON.parse(swaggerJsonFile);
 SwaggerValidator(swaggerModels);
 
 function validator(model, body) {
-	return swaggerModels.validateModel(model, body);
+	if (!(body instanceof Array)) body = [ body ]
+	console.log(body)
+	return swaggerModels.validateModel('base', body);
 }
 
 module.exports = { validator };
